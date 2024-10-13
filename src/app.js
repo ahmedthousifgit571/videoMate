@@ -1,5 +1,6 @@
 import express from "express";
 import CORS from "cors";
+import cookieParser from "cookie-parser";
 // import crypto from"crypto";
 const app = express();
 
@@ -13,6 +14,8 @@ app.use(
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
+app.use(cookieParser())
+
 
 // function generateAccessToken(length) {
 //   return crypto.randomBytes(length).toString("hex"); // Convert to a hexadecimal string
