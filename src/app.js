@@ -7,15 +7,14 @@ const app = express();
 app.use(
   CORS({
     origin: process.env.CORS_ORIGIN,
-    credentials: true, 
+    credentials: true,
   })
 );
 // common middleware
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
-app.use(cookieParser())
-
+app.use(cookieParser());
 
 // function generateAccessToken(length) {
 //   return crypto.randomBytes(length).toString("hex"); // Convert to a hexadecimal string
@@ -25,7 +24,10 @@ app.use(cookieParser())
 
 //import routes
 import healthcheckRouter from "./controllers/healthCheck.controller.js";
+import userRouter from "./routes/user.routes.js";
 
 //routes
 app.use("/api/v1/healthcheckup", healthcheckRouter);
+app.use("/api/v1/users", userRouter);
+
 export { app };
